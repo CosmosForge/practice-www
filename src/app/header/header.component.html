@@ -1,0 +1,25 @@
+<!-- Header type orange -->
+<header *ngIf="colorType; else header2" class="absolute">
+    <a href="/"><img src="assets/imgs/header/header-name-o.png" alt=""></a>
+    <div class="tabs">
+        <a href="">
+            <img src="assets/imgs/header/tab1.png" alt="">
+        </a>
+        <a href="">
+            <img src="assets/imgs/header/tab2.png" alt="">
+        </a>
+        <a href="">
+            <img src="assets/imgs/header/tab3.png" alt="">
+        </a>
+        <a href="">
+            <img src="assets/imgs/header/tab4.png" alt="">
+        </a>
+        <img src="assets/imgs/header/menu.png" alt="">
+    </div>
+</header>
+<!-- Header type wgite -->
+<ng-template #header2>
+    <header>
+      <p>Header 2 Content</p>
+    </header>
+</ng-template>
