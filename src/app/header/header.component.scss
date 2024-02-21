@@ -1,0 +1,46 @@
+.absolute{
+    position: absolute;
+    left: 0px;
+    top: 0px;
+}
+header{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 20px;
+    box-sizing: border-box;
+    height: max-content;
+    &>a{
+        width: 20%;
+        img{
+            width: 100%;
+        }
+    }
+    .tabs{
+        width: 35%;
+        position: relative;
+        display: flex;
+        justify-content: space-around;
+        height: 70%;
+        a, &>img{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 15%;
+            padding: 2%;
+            box-sizing: border-box;
+            transition-duration: 0.2s;
+            img{
+                width: 80%;
+                transition-duration: 0.2s;
+            }
+            &:hover{
+                background-color: red;
+                img{
+                    margin-bottom: 10px;
+                }
+            }
+        }
+    }
+}
