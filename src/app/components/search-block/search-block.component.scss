@@ -1,0 +1,201 @@
+$size-index: calc(1vw + 1vh);
+
+section{
+    width: 100%;
+    height: 100vh;
+    background-color: white;
+    .searchLists{
+        width: 100%;
+        height: 90%;
+        background-image: url("/assets/imgs/searchBlock/bg.jpeg");
+        background-size: cover;
+        border-bottom-left-radius: 10%;
+        border-bottom-right-radius: 10%;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        .center{
+            align-items: center;
+            justify-content: center;
+        }
+        .column{
+            flex-direction: column;
+        }
+        #classsic button{
+            width: 30%;
+            font-size: calc($size-index * 2);
+        }
+        #worlds button{
+            width: 20%;
+            font-size: calc($size-index * 1);
+            margin-left: 15px;
+        }
+        form{
+            width: 80%;
+            height: 70%;
+            padding-bottom: 5%;
+            box-sizing: border-box;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            position: absolute;
+            h1{
+                width: 100%;
+                text-align: center;
+                font-size: calc($size-index * 2.5);
+                font-weight: 400;
+                color: white;
+                text-shadow: 0px 0px 5px black;
+                margin: 0px;
+            }
+            .searchList{
+                width: 30%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.336);
+                border-radius: 20px;
+                box-shadow: inset 0px 0px 10vw rgba(0, 0, 0, 0.8);
+                padding: 10px;
+                box-sizing: border-box;
+                .select{
+                    width: 100%;
+                    height: 100%;
+                    overflow: auto;
+                    border-top-left-radius: 20px;
+                    border-bottom-left-radius: 20px;
+                    padding-top: 10px;
+                    box-sizing: border-box;
+                    &::-webkit-scrollbar {
+                        width: 10px;
+                        cursor: pointer;
+                    }
+                    &::-webkit-scrollbar-thumb {
+                        background: rgba(255, 98, 0, 0.723);
+                        border-radius: 5px;
+                      }
+                    p{
+                        width: calc(100% - 20px);
+                        color: white;
+                        font-size: calc($size-index * 1.1);
+                        transition-duration: 0.2s;
+                        margin: 5px 0px;
+                        margin-left: 10px;
+                        padding: 10px;
+                        box-sizing: border-box;
+                        cursor: pointer;
+                        &:not(.selected):hover{
+                            background-color: rgba(255, 98, 0, 0.6);
+                            box-shadow: 0px 0px 10px rgb(255, 98, 0);
+                        }
+                    }
+                    .selected{
+                        background-color: #ff6600;
+                    }
+                }
+            }
+            .searchBtn{
+                width: 100%;
+                box-sizing: border-box;
+                margin-top: 20px;
+            }
+           .by-world{
+                width: 100%;
+                height: 50%;
+                background-color: rgba(0, 0, 0, 0.3);
+                box-shadow: inset 0px 0px 10vw rgba(0, 0, 0, 0.7);
+                padding: 20px;
+                box-sizing: border-box;
+                .input, .examples{
+                    width: 100%;
+                    height: 50%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    label,p{
+                        color: white;
+                    }
+                    input{
+                        height: 90%;
+                        flex-grow: 2;
+                        font-size: calc($size-index * 1.1);
+                        border-radius: 10px;
+                        padding-left: 10px;
+                        box-sizing: border-box;
+                    }
+                    label{
+                        margin-right: 15px;
+                        font-size: calc($size-index * 1.1);
+                    }
+                    button{
+                        height: 90%;
+                    }
+                    &>p{
+                        font-size: calc($size-index * 0.8);
+                    }
+                    &>p:last-child{
+                        max-width: 74%;
+                        margin-left: 15px;
+                    }
+                }
+            }
+            
+            button{
+                text-transform: uppercase;
+                
+                padding: 10px 50px;
+                box-sizing: border-box;
+                border: none;
+                outline: none;
+                background-color: #ff6600;
+                float: right;
+                color: white;
+                font-weight: 500;
+                border-radius: 10px;
+                cursor: pointer;
+                box-shadow: 0px 5px 5px 0px #B24700;
+                transition-duration: 0.2s;
+                p{
+                    margin: 0px;
+                    transition-duration: 0.2s;
+                    text-align: center;
+                }
+                &:hover{
+                    box-shadow: 0px 5px 10px 0px #cf5605;
+                    p{
+                        text-shadow: 0px 0px 5px white;
+                    }
+                }
+            }
+        }
+    }
+    .searchTabs{
+        width: 100%;
+        height: 10%;
+        display: flex;
+        justify-content: space-around;
+        .searchTab{
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            user-select: none;
+            img,p{
+                margin: 0px;
+                transition-duration: 0.2s;
+            }
+            &:hover{
+                img, p{
+                    margin-bottom: 10px;
+                }
+            }
+        }
+    }
+}
+.search-form-container {
+    transition: opacity 0.5s ease-in-out;
+}
+.search-form-hidden {
+    opacity: 0;
+    pointer-events: none;
+}

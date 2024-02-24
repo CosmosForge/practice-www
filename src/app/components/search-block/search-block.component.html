@@ -1,0 +1,59 @@
+<section>
+    <div class="searchLists">
+        
+        <form class="search-form-container" id="classsic" (submit)="getBuildingsByTypes($event)" [ngClass]="{'search-form-hidden': formType !== 'classic'}">
+            <h1>It´s easier with a bit of help</h1>
+            <div class="searchList" id="list1">
+                <div class="select">
+                    <p class="option" *ngFor="let item of dataList.typeAction" (click)="handleClick(1, item.value)" [ngClass]="{'selected': list1 === item.value}">{{item.name}}</p>
+                </div>
+            </div>
+            <div class="searchList" id="list2">
+                <div class="select">
+                    <div class="select">
+                        <p class="option" *ngFor="let item of dataList.additions" (click)="handleClick(2, item.value)" [ngClass]="{'selected': list2.includes(item.value)}">{{item.name}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="searchList" id="list3">
+                <div class="select">
+                    <p class="option" *ngFor="let item of dataList.regions" (click)="handleClick(3, item.value)" [ngClass]="{'selected': list3 === item.value}">{{item.name}}</p>
+                </div>
+            </div>
+            <div class="searchBtn">
+                <button><p>search</p></button>
+            </div>
+        </form>
+        <form class="search-form-container center column" id="worlds" [ngClass]="{'search-form-hidden': formType !== 'worlds'}">
+            <div class="by-world">
+                <div class="input">
+                    <label for="searchW">What are you looking for?</label>
+                    <input type="text" id="searchW" placeholder="Loft with parking in Barcelona">
+                    <button><p>search</p></button>
+                </div>
+                <div class="examples">
+                    <p>Apartment, house, premises, parking...</p>
+                    <p>Examples: Apartments with parking in Barcelona ,​​Second-hand apartments Mallorca , Houses with pool Barcelona ,​​Casa Blanes cala San Francesc ...</p>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="searchTabs">
+        <div class="searchTab" (click)="changeSearchForms('classic')">
+            <img src="/assets/imgs/searchBlock/searchImg/classic.png" alt="">
+            <p>Classic search</p>
+        </div>
+        <div class="searchTab" (click)="changeSearchForms('worlds')">
+            <img src="/assets/imgs/searchBlock/searchImg/worlds.png" alt="">
+            <p>Search by words </p>
+        </div>
+        <div class="searchTab" (click)="changeSearchForms('code')">
+            <img src="/assets/imgs/searchBlock/searchImg/code.png" alt="">
+            <p>Search by code </p>
+        </div>
+        <div class="searchTab" (click)="changeSearchForms('my')">
+            <img src="/assets/imgs/searchBlock/searchImg/my.png" alt="">
+            <p>My search</p>
+        </div>
+    </div>
+</section>

@@ -8,11 +8,12 @@ header{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0px 20px;
+    padding: 0px 4%;
     box-sizing: border-box;
-    height: max-content;
+    height: 12vh;
+    z-index: 2;
     &>a{
-        width: 20%;
+        width: 22%;
         img{
             width: 100%;
         }
@@ -31,16 +32,20 @@ header{
             padding: 2%;
             box-sizing: border-box;
             transition-duration: 0.2s;
+            object-fit: contain;
             img{
                 width: 80%;
                 transition-duration: 0.2s;
             }
             &:hover{
-                background-color: red;
                 img{
                     margin-bottom: 10px;
                 }
             }
+        }
+        &>img{
+            cursor: pointer;
+            height: 100%;
         }
     }
 }
