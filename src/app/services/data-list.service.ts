@@ -7,7 +7,7 @@ interface action {
   providedIn: 'root'
 })
 export class DataListService {
-  typeAction:action[] = [
+  readonly typeAction:action[] = [
     {
       name: "New construction",
       value: "new"
@@ -25,7 +25,7 @@ export class DataListService {
       value: "transfer"
     }
   ]
-  additions:action[] = [
+  readonly additions:action[] = [
     {
       name: "Living place",
       value: "living"
@@ -63,7 +63,7 @@ export class DataListService {
       value: "business"
     }
   ]
-  regions:action[] = [
+  readonly regions:action[] = [
     {
       name: "Andalucía",
       value: "andalucía"

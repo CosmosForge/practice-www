@@ -1,6 +1,5 @@
 <section>
     <div class="searchLists">
-        
         <form class="search-form-container" id="classsic" (submit)="getBuildingsByTypes($event)" [ngClass]="{'search-form-hidden': formType !== 'classic'}">
             <h1>It´s easier with a bit of help</h1>
             <div class="searchList" id="list1">
@@ -47,13 +46,13 @@
             <img src="/assets/imgs/searchBlock/searchImg/worlds.png" alt="">
             <p>Search by words </p>
         </div>
-        <div class="searchTab" (click)="changeSearchForms('code')">
+        <!-- <div class="searchTab" (click)="changeSearchForms('code')">
             <img src="/assets/imgs/searchBlock/searchImg/code.png" alt="">
             <p>Search by code </p>
         </div>
         <div class="searchTab" (click)="changeSearchForms('my')">
             <img src="/assets/imgs/searchBlock/searchImg/my.png" alt="">
             <p>My search</p>
-        </div>
+        </div> -->
     </div>
 </section>
