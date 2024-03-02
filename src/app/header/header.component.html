@@ -1,20 +1,20 @@
 <!-- Header type orange -->
 <header *ngIf="colorType; else header2" class="absolute">
     <a href="/"><img src="assets/imgs/header/header-name-o.png" alt=""></a>
-    <div class="tabs">
-        <a href="">
+    <div class="tabs" [ngStyle]="!authStatus ? { 'justify-content': 'space-between', 'flex-direction': 'row-reverse' } : {}">
+        <a href="" *ngIf="authStatus">
             <img src="assets/imgs/header/tab1.png" alt="">
         </a>
-        <a href="">
+        <a href="" *ngIf="authStatus">
             <img src="assets/imgs/header/tab2.png" alt="">
         </a>
         <a href="">
             <img src="assets/imgs/header/tab3.png" alt="">
         </a>
-        <a href="">
+        <a href="" *ngIf="authStatus">
             <img src="assets/imgs/header/tab4.png" alt="">
         </a>
-        <img src="assets/imgs/header/menu.png" alt="">
+        <img src="assets/imgs/header/menu.png" alt="" *ngIf="authStatus">
     </div>
 </header>
 <!-- Header type wgite -->
@@ -23,3 +23,4 @@
       <p>Header 2 Content</p>
     </header>
 </ng-template>
+<app-regLog ></app-regLog>

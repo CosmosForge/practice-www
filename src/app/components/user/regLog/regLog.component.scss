@@ -1,0 +1,27 @@
+:host{
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 3;
+}
+.field{
+    
+    &,span, p{
+        display: block;
+        overflow: hidden;
+        transition: opacity 0.5s ease-in-out;
+    }
+}
+:host .show{
+    opacity: 1;
+    pointer-events: all;
+}
+.hide{
+    opacity: 0;
+    pointer-events: none;
+}
+form{
+    button{
+        transition-duration: 0.5s;
+    }
+}

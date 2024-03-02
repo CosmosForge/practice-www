@@ -1,7 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Component, Input } from '@angular/core';
+import { Router, RouterModule } from '@angular/router';
 import { DataListService } from '../../services/data-list.service';
+import { SearchDataService } from '../../services/search-data.service';
 
 
 @Component({
@@ -12,7 +13,8 @@ import { DataListService } from '../../services/data-list.service';
   styleUrl: './search-block.component.scss'
 })
 export class SearchBlockComponent {
-  constructor(public dataList:DataListService){}
+  @Input() redirect:boolean = false
+  constructor(public dataList:DataListService, private search:SearchDataService, private router: Router){}
   formType = "classic"
   list1 = ""
   list2:string[] = []
@@ -41,6 +43,14 @@ export class SearchBlockComponent {
   }
   getBuildingsByTypes(event: Event){
     event.preventDefault();
+    this.search.setClassicSearch({
+      type:this.list1,
+      additions:this.list2,
+      place:this.list3
+    })
+    if(this.redirect){
+      this.router.navigate(["/classic-search"])
+    }
   }
   changeSearchForms(type:string){
     this.formType = type

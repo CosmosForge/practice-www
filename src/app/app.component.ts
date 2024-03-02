@@ -22,7 +22,6 @@ export class AppComponent {
     afterNextRender (() => {
       if(sessionStorage.getItem("element") != undefined && sessionStorage.getItem("element") != null){
         this.element = parseInt(sessionStorage.getItem("element") || "0")
-        this.element = 0
       }else{
         sessionStorage.setItem("element", "0")
       }
@@ -39,10 +38,11 @@ export class AppComponent {
   @HostListener('wheel', ['$event'])
   setScrollDelta(event: WheelEvent){
     this.scrollDelta = event["deltaY"]
-    this.scrollStatus = true
-  }
-  @HostListener('document:scroll', ['$event'])
-  onScrollDis(event: any) {
+    if(this.elements.length > 1){
+      this.scrollStatus = true
+    }else{
+      this.scrollStatus = false
+    }
   }
   @HostListener('document:scrollend', ['$event'])
   onMouseWheel(event: any) {
