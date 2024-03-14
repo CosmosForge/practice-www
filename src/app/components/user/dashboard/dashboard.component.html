@@ -1,1 +1,23 @@
-<p>dashboard works!</p>
+<div class="inf">
+    <div class="user">
+        <h2>{{name}} {{lastName}}</h2>
+    </div>
+    <div class="estatesInf">
+        <p>Estates count: {{count}}</p>
+        <p>Number of views: {{views}}</p>
+    </div>
+    <div class="populars">
+        <h3>Your most popular property</h3>
+        <article ngIf="popularsEstates.length > 0" *ngFor="let item of popularsEstates">
+            <div class="img" [style.background-image]="'url('+item.img+')'">
+                <p>€ {{item.price.toLocaleString('en-US')}}</p>
+                <a href=""></a>
+            </div>
+            <div class="des">
+                <h3>{{item.title}}</h3>
+                <p>{{item.square}} m2 - {{item.rooms}} bedrooms.</p>
+            </div>
+            <p>Update {{item.updateTime}}</p>
+        </article>
+    </div>
+</div>

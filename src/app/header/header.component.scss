@@ -1,7 +1,14 @@
+$size-index: calc(1vw + 1vh);
 .absolute{
     position: absolute;
     left: 0px;
     top: 0px;
+}
+.orange{
+    background-color: orangered;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
 }
 header{
     width: 100%;
@@ -14,8 +21,11 @@ header{
     z-index: 2;
     &>a{
         width: 22%;
+        height: 100%;
         img{
             width: 100%;
+            height: 100%;
+            object-fit: contain;
         }
     }
     .tabs{
@@ -24,7 +34,7 @@ header{
         display: flex;
         justify-content: space-around;
         height: 70%;
-        a, &>img{
+        a, &>img, .authReg{
             display: flex;
             justify-content: center;
             align-items: center;
@@ -42,10 +52,76 @@ header{
                     margin-bottom: 10px;
                 }
             }
+            p{
+                cursor: pointer;
+                margin: 0px 10px;
+                font-size: calc($size-index * 1.1);
+                text-shadow: 0px 0px 2px white;
+            }
+        }
+        .authReg{
+            width: max-content;
         }
         &>img{
             cursor: pointer;
             height: 100%;
         }
+        .toggleRightAside{
+            position: relative;
+            width: 15%;
+            img{
+                cursor: pointer;
+                width: 100%;
+            }
+            ul{
+                position: absolute;
+                width: 20vw;
+                transition-duration: 0.5s;
+                padding: 0px;
+                margin: 0px;
+                list-style: none;
+                backdrop-filter: blur(4px);
+                height: calc(88vh - 15px);
+                background-color: rgba(237, 237, 237, 0.134);
+                border-radius: 20px;
+                border: 10px solid rgb(255, 68, 0);
+                box-shadow: 0px 0px 10px 10px rgba(0, 0, 0, 0.429);
+                overflow: hidden;
+                li{
+                    width: 100%;
+                    transition-duration: 0.5s;
+                    border-bottom: 5px solid orangered;
+                    &:hover{
+                        background-color: rgb(255, 255, 255);
+                        &>a{
+                            transform: translate(40px) scale(1.2);
+                        }
+                    }
+                    a{
+                        position: relative;
+                        padding: 10px 0px;
+                        box-sizing: border-box;
+                        display: block;
+                        width: 100%;
+                        transition-duration: 0.5s;
+                        text-decoration: none;
+                        color: orangered;
+                        font-weight: 600;
+                        padding-left: 10px;
+                        box-sizing: border-box;
+                        font-size: calc($size-index * 1.1);
+                    }
+                }
+            }
+        }
     }
+}
+
+:host .show{
+    opacity: 1;
+    pointer-events: all;
+}
+.hide{
+    opacity: 0;
+    pointer-events: none;
 }

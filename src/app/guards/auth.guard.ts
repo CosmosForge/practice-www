@@ -1,13 +1,15 @@
-import { CanActivateFn } from '@angular/router';
-import { AuthService } from '../services/auth.service';
+import { CanActivateFn, Router } from '@angular/router';
 import {CookieService} from "ngx-cookie-service"
-import { Inject, inject } from '@angular/core';
+import { inject } from '@angular/core';
 
 export const authGuard: CanActivateFn = (route, state) => {
-  const token = inject(AuthService).isAuth()
-  if(!!token){
+  const router = inject(Router);
+  const accessToken = inject(CookieService).check("access-token");
+  const refreshToken = inject(CookieService).check("refresh-token");
+  if(accessToken && refreshToken){
     return true;
   }else{
+    router.navigate([""])
     return false
   }
 };

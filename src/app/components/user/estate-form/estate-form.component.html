@@ -1,0 +1,62 @@
+<form [formGroup]="realEstateForm" (ngSubmit)="onSubmit()" enctype="multipart/form-data">
+    <div>
+      <img [src]="imgURL" (click)="fileInput.click()" style="cursor: pointer;">
+      <input type="file" formControlName="img" (change)="onFileSelected($event)" #fileInput style="display: none;">
+    </div>
+    <div>
+      <label>Type of Action:</label>
+      <select formControlName="typeAction">
+        <option value="sell">Sell</option>
+        <option value="rent">Rent</option>
+        <option value="transfer">Transfer</option>
+        <option value="new-construct">New Construct</option>
+      </select>
+    </div>
+    <div>
+      <label>Real Estate Type:</label>
+      <select formControlName="realEstateType">
+        <option value="living">Living</option>
+        <option value="office">Office</option>
+        <option value="shop">Shop</option>
+        <option value="industrial">Industrial</option>
+        <option value="land">Land</option>
+        <option value="investments">Investments</option>
+        <option value="unique">Unique</option>
+        <option value="business">Business</option>
+      </select>
+    </div>
+    <div>
+      <label>Land Type:</label>
+      <select formControlName="landType">
+        <option value="andalucia">Andalucía</option>
+        <option value="aragon">Aragón</option>
+        <!-- Другие варианты для landType -->
+      </select>
+    </div>
+    <div>
+      <label>Rooms Count:</label>
+      <input type="number" formControlName="roomsCount">
+    </div>
+    <div>
+      <label>Area:</label>
+      <input type="number" formControlName="area">
+    </div>
+    <div>
+      <label>Date of Construction:</label>
+      <input type="date" formControlName="dateConstruction">
+    </div>
+    <div>
+      <label>Estate Status:</label>
+      <input type="checkbox" formControlName="estateStatus">
+    </div>
+    <div>
+      <label>Description:</label>
+      <textarea formControlName="description"></textarea>
+    </div>
+    <div>
+      <label>Views Count:</label>
+      <input type="number" formControlName="viewsCount">
+    </div>
+    <button type="submit" [disabled]="!realEstateForm.valid">Submit</button>
+  </form>
+  

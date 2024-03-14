@@ -43,12 +43,8 @@ export class DataListService {
       value: "industrial"
     },
     {
-      name: "Land and Solar",
+      name: "Land",
       value: "land"
-    },
-    {
-      name: "Parking",
-      value: "parking"
     },
     {
       name: "Investments",

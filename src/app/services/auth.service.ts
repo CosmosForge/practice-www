@@ -12,17 +12,14 @@ interface userData{
   providedIn: 'root'
 })
 export class AuthService {
-
   constructor(
     private readonly cookie: CookieService,
-    private router:Router,
-    private readonly req:RequestsService) { }
-  login(userData:userData){
-    this.req.sendPostRequest(`${environment.apiUrl}/user/login`, userData)
-  }
+    private router:Router) { }
+
   isAuth(){
-    const token =  this.cookie.check("token")
-    return !!token;
+    const accessToken =  this.cookie.check("access-token")
+    const refreshToken =  this.cookie.check("refresh-token")
+    return !!accessToken && !!refreshToken ;
   }
   logOut(){
     this.cookie.delete("token")

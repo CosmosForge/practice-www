@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, Output, Renderer2 } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import {environment} from "../../../../config"
 import { RequestsService } from '../../../services/requests.service';
 @Component({
@@ -12,18 +12,29 @@ import { RequestsService } from '../../../services/requests.service';
   styleUrl: './regLog.component.scss'
 })
 export class regLogComponent {
+  @Output() correctSub: EventEmitter<boolean> = new EventEmitter<boolean>();
+  @Output() hideForms: EventEmitter<void> = new EventEmitter<void>();
+  @Input() showform = "log"
   regForm: FormGroup;
-  loginForm: FormGroup;
-  notSubmitedReg = true
-  subError = false
+  authForm: FormGroup;
+  submitedReg = false
+  submitedAuth = false
+  regMessage = false
+  autMessage = false
   passwordLatin = false
   passwordUpperCase = false
   passwordSymbols = false
   passwordCompare = false
   passwordLength = false
-  showform = "reg"
-  subErrorText = ""
-  constructor(private fb: FormBuilder, private request:RequestsService) {
+  regMessageText = "ok"
+  authMessageText = "ok"
+  constructor(
+    private fb: FormBuilder,
+    private request:RequestsService,
+    private router:Router,
+    private readonly elementRef: ElementRef,
+    private readonly renderer: Renderer2
+    ) {
     this.regForm = this.fb.group({
       username: ['', [Validators.required]],
       firstName: ['', [Validators.required]],
@@ -40,7 +51,7 @@ export class regLogComponent {
         Validators.minLength(8),
       ]]
     });
-    this.loginForm = this.fb.group({
+    this.authForm = this.fb.group({
       user: ['', [Validators.required,]],
       password: ['', [Validators.required]]
     });
@@ -91,24 +102,44 @@ export class regLogComponent {
       }
   }
   onSubReg(){
-    this.notSubmitedReg = false
+    this.submitedReg = true
     this.request.sendPostRequest(environment.apiUrl+"/user", this.regForm.value).subscribe(
       (data)=>{
-        this.notSubmitedReg = true
+        this.submitedReg = false
       },
       (error) => {
-        this.notSubmitedReg = true
+        this.submitedReg = false
         if(error.status === 400) {
-          this.subErrorText = error.error.message
+          this.regMessageText = error.error.message
         }
-        this.subError = true
+        this.regMessage = true
         setTimeout(() => {
-          this.subError = false
-        }, 1500);
+          this.regMessage = false
+        }, 2500);
       }
     )
   }
   onSubLogin(){
-
+    this.submitedAuth = true
+    this.request.sendPostRequest(environment.apiUrl+"/user/auth/login", this.authForm.value).subscribe(
+      (data)=>{
+        this.submitedAuth = false
+        this.router.navigate(["/user/dashboard"])
+        this.correctSub.emit(true);
+      },
+      (error) => {
+        this.submitedAuth = false
+        if(error.status === 400) {
+          this.authMessageText = error.error.message
+        }
+        this.autMessage = true
+        setTimeout(() => {
+          this.autMessage = false
+        }, 2500);
+      }
+    )
+  }
+  hide() {
+    this.hideForms.emit()
   }
 }
