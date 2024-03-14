@@ -1,54 +1,50 @@
+<div class="bg" (click)="hide()"></div>
 <form [formGroup]="regForm" (ngSubmit)="onSubReg()" *ngIf="showform == 'reg'">
-    <div class="container">
-        <div class="field">
-            <label for="username">Username:</label>
-            <input type="text" id="username" formControlName="username" required>
-        </div>
-        <div class="field">
-            <label for="firstname">First name:</label>
-            <input type="text" id="firstName" formControlName="firstName" required>
-        </div>
-        <div class="field">
-            <label for="lastname">Last name:</label>
-            <input type="text" id="lastName" formControlName="lastName" required>
-        </div>
-        <div class="field">
-            <label for="phone">Phone:</label>
-            <input type="tel" id="phone" formControlName="phone" required>
-        </div>
-        <div class="field">
-            <label for="address">Address:</label>
-            <input type="text" id="address" formControlName="address" required>
-        </div>
-        <div class="field">
-            <label for="email">Email:</label>
-            <input type="email" id="email" formControlName="email" required>
-        </div>
-        <div class="field">
-            <label for="password">Password:</label>
-            <input type="password" id="password" formControlName="password" required (input)="checkLatin(); checkUpperCase(); checkSymbols(); checkLength()">
-            <span class="hide" [ngClass]="{'show': !passwordLatin}" [ngStyle]="{'color': passwordLatin ? 'green' : 'red'}">Only Latin letters</span>
-            <span class="hide" [ngClass]="{'show': !passwordUpperCase}" [ngStyle]="{'color': passwordUpperCase ? 'green' : 'red'}">Contain uppercase letters.</span>
-            <span class="hide" [ngClass]="{'show': !passwordSymbols}" [ngStyle]="{'color': passwordSymbols ? 'green' : 'red'}">Have special characters like &#64;#$%^&*!()_.</span>
-            <span class="hide" [ngClass]="{'show': !passwordLength}" [ngStyle]="{'color': passwordLength ? 'green' : 'red'}">Be at least 8 characters in length.</span>
-        </div>
-        <div class="field hide" [ngClass]="{'show': passwordUpperCase && passwordSymbols && passwordLength}">
-            <label for="confirmPassword">Confirm Password:</label>
-            <input type="password" id="confirmPassword" formControlName="confirmPassword" required (input)="checkPasswords()" >
-            <span class="hide" [ngClass]="{'show': !passwordCompare}" [ngStyle]="{'color': passwordCompare ? 'green' : 'red'}">Password mismatch</span>
-        </div>
-        <div class="field">
-            <button type="submit" [disabled]="!(regForm.valid && passwordCompare && notSubmitedReg)">Register</button>
-            <p class="hide" [ngClass]="{'show': subError}">{{subErrorText}}</p>
-        </div>
+    <h2>Registration form</h2>
+    <div class="field">
+        <input type="text" id="username" formControlName="username" required placeholder="Username">
+    </div>
+    <div class="field">
+        <input type="text" id="firstName" formControlName="firstName" required placeholder="First name">
+    </div>
+    <div class="field">
+        <input type="text" id="lastName" formControlName="lastName" required placeholder="Last name">
+    </div>
+    <div class="field">
+        <input type="tel" id="phone" formControlName="phone" required placeholder="Phone">
+    </div>
+    <div class="field">
+        <input type="text" id="address" formControlName="address" required placeholder="Address">
+    </div>
+    <div class="field">
+        <input type="email" id="email" formControlName="email" required placeholder="Email">
+    </div>
+    <div class="field">
+        <input type="password" id="password" formControlName="password" required (input)="checkLatin(); checkUpperCase(); checkSymbols(); checkLength()" placeholder="Password">
+        <span class="hide" [ngClass]="{'show': !passwordLatin}" [ngStyle]="{'color': passwordLatin ? 'green' : 'red'}">Only Latin letters</span>
+        <span class="hide" [ngClass]="{'show': !passwordUpperCase}" [ngStyle]="{'color': passwordUpperCase ? 'green' : 'red'}">Contain uppercase letters.</span>
+        <span class="hide" [ngClass]="{'show': !passwordSymbols}" [ngStyle]="{'color': passwordSymbols ? 'green' : 'red'}">Have special characters like &#64;#$%^&*!()_.</span>
+        <span class="hide" [ngClass]="{'show': !passwordLength}" [ngStyle]="{'color': passwordLength ? 'green' : 'red'}">Be at least 8 characters in length.</span>
+    </div>
+    <div class="field hide" [ngClass]="{'show': passwordUpperCase && passwordSymbols && passwordLength}" >
+        <input type="password" id="confirmPassword" formControlName="confirmPassword" required (input)="checkPasswords()" placeholder="Confirm Password">
+        <span class="hide" [ngClass]="{'show': !passwordCompare}" [ngStyle]="{'color': passwordCompare ? 'green' : 'red'}">Password mismatch</span>
+    </div>
+    <div class="field">
+        <p class="hide" [ngClass]="{'show': regMessage}">{{regMessageText}}</p>
+        <button type="submit" [disabled]="!(regForm.valid && passwordCompare && !submitedReg)">Register</button>
     </div>
 </form>
-<form [formGroup]="loginForm" (ngSubmit)="onSubLogin()" *ngIf="showform == 'log'">
-    <label for="email">User:</label>
-    <input type="text" id="user" formControlName="user" required>
-  
-    <label for="password">Password:</label>
-    <input type="password" id="password" formControlName="password" required>
-  
-    <button type="submit" [disabled]="loginForm.invalid">Login</button>
+<form [formGroup]="authForm" (ngSubmit)="onSubLogin()" *ngIf="showform == 'log'">
+    <h2>Authorization form</h2>
+    <div class="field">
+        <input type="text" id="user" formControlName="user" placeholder="Username or email" required>
+    </div>
+    <div class="field">
+        <input type="password" id="password" formControlName="password" required placeholder="Password">
+    </div>
+    <div class="field">
+        <p class="hide" [ngClass]="{'show': autMessage}">{{authMessageText}}</p>
+        <button type="submit" [disabled]="!authForm.valid && !submitedAuth">Login</button>
+    </div>
 </form>

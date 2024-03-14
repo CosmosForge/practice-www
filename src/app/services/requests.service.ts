@@ -10,7 +10,6 @@ export class RequestsService {
     return this.http.get(url, { withCredentials: true });
   }
   sendPostRequest(url:string, body:any){
-    
     return this.http.post(url, body, { withCredentials: true });
   }
   sendPatchRequest(url:string, body:any){

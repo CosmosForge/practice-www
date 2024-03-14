@@ -1,7 +1,12 @@
 <!-- Header type orange -->
-<header *ngIf="colorType; else header2" class="absolute">
-    <a href="/"><img src="assets/imgs/header/header-name-o.png" alt=""></a>
-    <div class="tabs" [ngStyle]="!authStatus ? { 'justify-content': 'space-between', 'flex-direction': 'row-reverse' } : {}">
+<header [ngClass]="{'absolute': colorType == true, 'orange': colorType == false}">
+    <a href="/"><img [src]="colorType? 'assets/imgs/header/header-name-o.png':'assets/imgs/header/header-name-w.png'" alt=""></a>
+    <div class="tabs" [ngStyle]="!authStatus ? { 'justify-content': 'end', 'flex-direction': 'row-reverse' } : {}">
+        <div class="authReg" *ngIf="!authStatus">
+            <p (click)="showForm('reg')">Registration</p>
+            <p>/</p>
+            <p (click)="showForm('log')">Login</p>
+        </div>
         <a href="" *ngIf="authStatus">
             <img src="assets/imgs/header/tab1.png" alt="">
         </a>
@@ -14,13 +19,18 @@
         <a href="" *ngIf="authStatus">
             <img src="assets/imgs/header/tab4.png" alt="">
         </a>
-        <img src="assets/imgs/header/menu.png" alt="" *ngIf="authStatus">
+        <div class="toggleRightAside" *ngIf="authStatus">
+            <img src="assets/imgs/header/menu.png" alt="" (click)="toggleMenu()">
+            <ul [ngStyle]="{'right': toggleMenuStatus? '-5vw': 'calc(-27vw)'}">
+                <li>
+                    <a routerLink="/user/dashboard">DashBoard</a>
+                </li>
+                <li>
+                    <a routerLink="/user/estate-form">Create Estate</a>
+                </li>
+            </ul>
+        </div>
     </div>
 </header>
-<!-- Header type wgite -->
-<ng-template #header2>
-    <header>
-      <p>Header 2 Content</p>
-    </header>
-</ng-template>
-<app-regLog ></app-regLog>
+
+<app-regLog class="hide" [ngClass]="{'show': showForms}" *ngIf="!authStatus" (correctSub)="authFlag($event)" (hideForms)="hideForms()"></app-regLog>
